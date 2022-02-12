@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+// 이름으로 객체 검색하기
+
 class Car{}
 class SportsCar extends Car{}
 class Truck extends Car{}

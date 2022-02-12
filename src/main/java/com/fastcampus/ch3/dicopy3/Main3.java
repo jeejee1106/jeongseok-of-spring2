@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+// 타입으로 객체 검색하기
+
 @Component class Car{}
 @Component class SportsCar extends Car{}
 @Component class Truck extends Car{}
@@ -29,7 +31,7 @@ class AppContext{
     private void doComponentScan() {
         // 1. 패키지 내의 클래스 목록을 가져온다.
         // 2. 반복문으로 클래스를 하나씩 읽어와서 @Component가 붙어 있는지 확인
-        // 3. @Component가 붙어 있으면 객페를 생성해서 map에 저장
+        // 3. @Component가 붙어 있으면 객체를 생성해서 map에 저장
         try {
             ClassLoader classLoader = AppContext.class.getClassLoader();
             ClassPath classPath = ClassPath.from(classLoader);
@@ -49,18 +51,28 @@ class AppContext{
         }
     }
 
-    Object getBean(String key) {
+    Object getBean(String key) { //객체를 검색할 때 byName으로 검색
         return map.get(key);
     }
 
+    Object getBean(Class clazz) { //객체를 검색할 떄 byType으로 검색
+        for (Object obj : map.values()) {
+            if (clazz.isInstance(obj)) { //obj가 클래스의 객체거나 자손이면 true
+                return obj;
+            }
+        }
+        return null;
+    }
 }
 
 public class Main3 {
     public static void main(String[] args) throws Exception {
         AppContext ac = new AppContext();
-        Car car = (Car) ac.getBean("car");
+        Car car = (Car) ac.getBean("car"); //객체를 검색할 떄 byName으로 검색
+        Car car2 = (Car) ac.getBean(Car.class); //객체를 검색할 떄 byType으로 검색
         Engine engine = (Engine) ac.getBean("engine");
         System.out.println("car = " + car); //config.txt 파일에서 설정하는대로 SportsCar, Truck이 결정된다.
+        System.out.println("car2 = " + car2); //
         System.out.println("engine = " + engine);
     }
 
