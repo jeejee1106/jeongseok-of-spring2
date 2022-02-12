@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-// 이름으로 객체 검색하기
+// AppContext 이용하기 - 이름으로 객체 검색하기
 
 class Car{}
 class SportsCar extends Car{}
@@ -48,7 +48,7 @@ class AppContext{
 public class Main2 {
     public static void main(String[] args) throws Exception {
         AppContext ac = new AppContext();
-        Car car = (Car) ac.getBean("car");
+        Car car = (Car) ac.getBean("car"); //getBean이 반환하는 것은 Object이기 때문에 형변환이 필요하다.
         Engine engine = (Engine) ac.getBean("engine");
         System.out.println("car = " + car); //config.txt 파일에서 설정하는대로 SportsCar, Truck이 결정된다.
         System.out.println("engine = " + engine);

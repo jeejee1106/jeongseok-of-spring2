@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-// 타입으로 객체 검색하기
+// AppContext 이용하기 - 타입으로 객체 검색하기
 
 @Component class Car{}
 @Component class SportsCar extends Car{}
