@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- scope를 생략한 것들은 singleton이라는 기본값이 생략된 것! -->
+    <!-- scope="prototype"로 하면 getBean할 때 마다 새로운 객체가 생성이 된다. -->
+    <bean id="car" class="com.fastcampus.ch3.Car">
+        <!-- setter에 값을 넣는 두 가지 방법 중 두 번째 - property -->
+        <!-- constructor-arg는 생성자를 통해 값을 넣는 방법!!!! property와 constructor-arg 중 자유롭게 선택-->
+        <constructor-arg name="color" value="red"/>
+        <constructor-arg name="oil" value="100"/>
+        <constructor-arg name="engine" ref="engine"/>
+        <constructor-arg name="doors">
+            <array value-type="com.fastcampus.ch3.Door">
+                <ref bean="door"/>
+                <ref bean="door"/>
+            </array>
+        </constructor-arg>
+    </bean>
+    <bean id="engine" class="com.fastcampus.ch3.Engine"/>
+    <bean id="door" class="com.fastcampus.ch3.Door" scope="prototype"/>
+</beans>
