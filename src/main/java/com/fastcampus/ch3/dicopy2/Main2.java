@@ -17,11 +17,9 @@ class AppContext{
     Map map; //객체 저장소
 
     AppContext() {
-        map = new HashMap();
-
         try {
             Properties p = new Properties();
-            p.load(new FileReader("config.txt"));
+            p.load(new FileReader("config.txt")); //1. config.txt의 내용을 읽어와서
 
             //properties에 저장된 내용을 Map에 저장
             map = new HashMap(p);
@@ -29,7 +27,7 @@ class AppContext{
             //반복문으로 클래스 이름을 얻어서 객체를 생성해서 다시 map에 저장
             for (Object key : map.keySet()) {
                 Class clazz = Class.forName((String)map.get(key));
-                map.put(key, clazz.newInstance());
+                map.put(key, clazz.newInstance()); //2. config.txt에 적혀진 클래스의 객체를 만든 다음에 맵에 저장함
             }
 
             Class clazz = Class.forName(p.getProperty("car"));
@@ -40,7 +38,7 @@ class AppContext{
     }
 
     Object getBean(String key) {
-        return map.get(key);
+        return map.get(key); //key를 주면 그 key에 해당하는 객체를 반환!
     }
 
 }
