@@ -3,7 +3,12 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!-- component Scanning 이용하기 -->
+    <!-- config1.xml처럼 하나하나 bean으로 등록해주지 않아도 componenet-scan을 이용하면
+         @Component 어노테이션이 붙은 클래스를 찾아 자동으로 bean으로 등록을 해준다.-->
     <context:component-scan base-package="com.fastcampus.ch3">
         <context:exclude-filter type="regex" expression="com.fastcampus.ch3.dicopy*.*"/>
+        <!-- expression에 지정해준 범위에 있는 클래스들은 bean등록에서 제외시키겠다는 의미 -->
+        <!-- 지금은 충돌나서 제외시켜줌 -->
     </context:component-scan>
 </beans>

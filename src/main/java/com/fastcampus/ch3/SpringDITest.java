@@ -9,13 +9,14 @@
 //
 //import java.util.Arrays;
 //
-
-/*
-* ApplicationContextTest 클래스와 겹치는 부분이 있어서 주석처리함
-* */
-
-
+//
+///*
+//* ApplicationContextTest 클래스와 겹치는 부분이 있어서 주석처리함
+//* */
+//
+//
 //@Component class Engine{} //@Component("engine") id가 생략이 되어있는 것이며, @Component어노테이션은 <bean id="engine" class="패키지.Engine"/> 의 역할과 같다.
+                            //즉, config/xml처럼 하나하나 bean등록을 안해줘도 config.xml처럼 component-scan으로 사용할 수 있다.
 //@Component class SuperEngine extends Engine{}
 //@Component class TurboEngine extends Engine{}
 //@Component class Door{}
@@ -28,18 +29,18 @@
 //    @Autowired //@Autowired는 byType으로 빈을 찾아서 주입. 같은 타입이 여러개면 이름으로 검색
 //    @Qualifier("superEngine") //@Qualifier에 id를 넣어서 지정해줄 수도 있다.
 //    Engine engine;
-//    @Autowired
+//    @Autowired //이 어노테이션을 쓰니 setter를 주석처리해도 config.xml을 통해 bean등록이 됐다.
 //    Door[] doors;
 //
 //    public Car() {} //생성자를 오버로딩 할 땐 기본 생성자를 꼭 만들어주기.
-//
+//    // constructor-arg를 사용하기 위해선 생성자가 꼭 있어야 한다.
 //    public Car(String color, int oil, Engine engine, Door[] doors) {
 //        this.color = color;
 //        this.oil = oil;
 //        this.engine = engine;
 //        this.doors = doors;
 //    }
-//
+//    //property를 사용하기 위해선 setter가 꼭 있어야 한다.
 //    public void setColor(String color) {
 //        this.color = color;
 //    }
@@ -76,14 +77,15 @@
 //        //그리고 이렇게 getBean으로 한 번 생성된 객체는 아래에서 또 만들어도 같은 객체를 만든다. (car=car2 같은 해쉬값)
 //        //즉, 한 번 만들어 놓으면 그 후에는 재생성이 아닌 호출의 개념??? 인듯???
 //        //그 이유는 기본값이 싱글톤이기 때문이다.(같은 기능을 하는 객체를 여러개 생성할 필요 없음, 참고:싱글톤?클래스의 객체를 하나만 만드는 것)
-//        //그래도 (주소값이=해쉬값)다른 객체를 생성하고 싶다면 xml파일에서 scope를 prototype으로 바꿔주면 된다.
+//        //그래도 (주소값이=해쉬값)다른 객체를 생성하고 싶다면 xml파일에서 scope를 prototype으로 바꿔주면 된다. 기본값이 싱글톤.
 //
 //        Car car = (Car) ac.getBean("car"); //byName
 ////        Engine engine = (Engine) ac.getBean(Engine.class); //byName
 //        Engine engine = (Engine) ac.getBean("superEngine");
 //        Door door = (Door) ac.getBean("door"); //byName
 //
-//        //setter에 값을 넣어 호출하는 두 가지 방법 중 첫 번째.(두 번째는 config.xml파일에 있다.)
+        //setter에 값을 넣어 호출하는 두 가지 방법 중 첫 번째.(두 번째는 config1.xml파일에 있다.)
+        //두 번째 방법 : setter를 호출하는 대신 xml에 property설정을 해주는 것!
 ////        car.setColor("red");
 ////        car.setOil(100);
 ////        car.setEngine(engine);

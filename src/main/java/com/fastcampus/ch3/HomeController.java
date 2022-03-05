@@ -16,8 +16,15 @@ import javax.servlet.http.*;
 
 //@Controller
 public class HomeController {
+
+	/**
+	 * 두 개의 Application Context (root, servlet)에 어떻게 접근 할 수 있을까?
+	 * Root ApplicationContext : 아래의 코드 두 줄 추가 (line 33~34)
+	 * Servlet Application Context : @Autowired를 이용한 주입
+	 */
+
 	@Autowired
-	WebApplicationContext servletAC; // Servlet AC
+	WebApplicationContext servletAC; // Servlet Application Context는 이렇게 주입을 받을 수 있다.
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, HttpServletRequest request, Model model) {

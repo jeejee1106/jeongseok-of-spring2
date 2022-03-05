@@ -5,11 +5,12 @@
     <!-- scope를 생략한 것들은 singleton이라는 기본값이 생략된 것! -->
     <!-- scope="prototype"로 하면 getBean할 때 마다 새로운 객체가 생성이 된다. -->
     <bean id="car" class="com.fastcampus.ch3.Car">
-        <!-- setter에 값을 넣는 두 가지 방법 중 두 번째 - property -->
-        <!-- constructor-arg는 생성자를 통해 값을 넣는 방법!!!! property와 constructor-arg 중 자유롭게 선택-->
+        <!-- setter에 값을 넣는 두 가지 방법 중 두 번째 - property는 setter가 꼭 있어야 사용가능! -->
+        <!-- constructor-arg는 생성자를 통해 값을 넣는 방법!!!! - constructor-arg는 생성자가 꼭 있어야 사용가능! -->
+        <!-- property와 constructor-arg 중 자유롭게 선택(보통 property를 많이 씀) -->
         <constructor-arg name="color" value="red"/>
-        <constructor-arg name="oil" value="100"/>
-        <constructor-arg name="engine" ref="engine"/>
+        <constructor-arg name="oil" value="100"/> <!-- 기본형과 String타입은 value -->
+        <constructor-arg name="engine" ref="engine"/> <!-- engine은 타입이 참조형이라서 value가 아닌 ref로 쓴다 -->
         <constructor-arg name="doors">
             <array value-type="com.fastcampus.ch3.Door">
                 <ref bean="door"/>

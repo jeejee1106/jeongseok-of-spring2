@@ -25,6 +25,4 @@
 		<context:exclude-filter type="regex" expression="com.fastcampus.ch3.dicopy*.*"/>
 	</context:component-scan>
 	
-	
-	
 </beans:beans>

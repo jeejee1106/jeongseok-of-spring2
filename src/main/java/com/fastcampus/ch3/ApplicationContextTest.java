@@ -22,12 +22,12 @@ class Car {
     @Value("100") int oil;
 //    @Autowired
     Engine engine;
-//    @Autowired
+//    @Autowired //필드주입 빼고 생성자 주입으로
     Door[] doors;
 
     public Car() {}
 
-    @Autowired //생성자가 하나일 경우 생략이 가능하다.
+    @Autowired //생성자가 하나일 경우 @Autowired 생략이 가능하다.
     public Car(@Value("red") String color, @Value("100") int oil, Engine engine, Door[] doors) {
         this.color = color;
         this.oil = oil;
@@ -83,9 +83,9 @@ public class ApplicationContextTest {
 
         System.out.println("ac.getBean(SysInfo.class) = " + ac.getBean(SysInfo.class));
 
-        //횐경변수 가져오기??
+        //환경변수 가져오기??
         Map<String, String> map = System.getenv();
-//        System.out.println("map = " + map);
+        System.out.println("map = " + map);
 
         // properties 가져오기??
         Properties properties = System.getProperties();
