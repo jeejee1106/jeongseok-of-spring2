@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-// AppContext 이용하기 - 이름으로 객체 검색하기
+//DI흉내내기2 -  AppContext(객체저장소)와 외부파일을 이용해 객체 생성하기
 
 class Car{}
 class SportsCar extends Car{}

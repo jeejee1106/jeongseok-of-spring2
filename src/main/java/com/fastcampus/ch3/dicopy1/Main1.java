@@ -3,6 +3,8 @@ package com.fastcampus.ch3.dicopy1;
 import java.io.FileReader;
 import java.util.Properties;
 
+//DI흉내내기1 - 다형성과 외부파일을 이용해 객체 생성하기
+
 class Car{}
 class SportsCar extends Car{}
 class Truck extends Car{}

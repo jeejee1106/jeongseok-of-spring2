@@ -14,10 +14,10 @@ import java.util.Set;
 //@Autowired 사용하기!!
 
 @Component class Car{
-    @Resource
-    Engine engine;
-    @Resource
-    Door door;
+//    @Autowired Engine engine;
+//    @Autowired Door door;
+    @Resource Engine engine;
+    @Resource Door door;
 
     @Override
     public String toString() {
@@ -55,12 +55,12 @@ class AppContext{
     }
 
     private void doAutiwired() {
-        //중요개념! map에 저장된 객체의 iv중에 @Autowired가 붙어 있으면 map에서 iv의 타입에 맞는 객체를 찾아서 연결(= 객체의 주소를 iv에 저장)
+        //중요개념! map에 저장된 객체의 iv중에 @Autowired가 붙어 있으면 map에서 iv의 타입에 맞는 객체를 찾아서 객체의 주소를 iv에 저장(=객체 연결)
         try {
             for (Object bean : map.values()) { //map의 value에 저장되어 있는 것들을 가져다가
                 for (Field fld : bean.getClass().getDeclaredFields()) {
                     if (fld.getAnnotation(Autowired.class) != null) { //value에 만약 @Autowired어노테이션이 붙어 있으면
-                        fld.set(bean, getBean(fld.getType())); //해당하는 타입을 뒤져서 연결해준다. car.engine = obj;
+                        fld.set(bean, getBean(fld.getType())); //해당하는 타입을 뒤져서 bean에 찾은 타입을 넣어준다(연결해준다). car.engine = obj;
                     }
                 }
             }
@@ -109,9 +109,9 @@ class AppContext{
 public class Main4 {
     public static void main(String[] args) throws Exception {
         AppContext ac = new AppContext();
-        Car car = (Car) ac.getBean("car"); //객체를 검색할 떄 byName으로 검색
+        Car car = (Car) ac.getBean("car"); //객체를 검색할 때 byName으로 검색
         Engine engine = (Engine) ac.getBean("engine");
-        Door door = (Door) ac.getBean(Door.class); //객체를 검색할 떄 byType으로 검색
+        Door door = (Door) ac.getBean(Door.class); //객체를 검색할 때 byType으로 검색
 
         //수동으로 객체 연결 (자동은 @Autowired)
 //        car.engine = engine;
