@@ -66,3 +66,33 @@
 |x|@Resource|스프링에는 이름 검색이 없음|
 |@Scope("singleton")|@Singleton|표준에서는 prototype이 디폴트|
 |@Component|@Named, @ManagedBean|표준에서는 반드시 이름이 있어야 함|
+	
+## 3. DAO의 작성과 적용
+- **DAO란?**
+	- 데이터에 접근하기 위한 객체(Data Access Object)
+	- database에 저장된 데이터의 CRUD를 담당한다.
+	- DB테이블 하나당 하나의 DAO를 작성해야한다.
+- **작성하는 이유**
+	- 중복 코드(중복 쿼리)의 제거
+
+## 4. Transaction
+- **transaction**
+	- 더 이상 나눌 수 없는 작업의 단위
+	- transaction의 속성
+		- 원자성(Atomicity) : 나눌 수 없는 하나의 작업으로 다뤄져야한다.
+		- 일관성(Consistency) : 트랜잭션 수행 전과 후가 일관된 상태를 유지해야한다.
+		- 고립성(Isolation) : 각 트랜잭션은 독립적으로 수행되어야한다.
+		- 영속성(Durability) : 성공한 트랜잭션의 결과는 유지되어야한다.
+
+- **커밋(commit)**
+	- 작업 내용을 DB에 영구적으로 저장
+		- 자동커밋(Auto commit) : 명령 실행 후 자동으로 커밋이 수행(rollback불가)
+		- 수동커밋 : 명령 실행 후 명시적으로 commit 또는 rollback을 입력
+- **롤백(rollback)**
+	- 최근 변경사항을 취소(마지막 커밋으로 복귀)
+
+- **Isolation level**
+	- READ UNCOMMITED : 커밋되지 않은 데이터도 읽기 가능
+	- READ COMMITED : 커밋된 데이터만 읽기 가능
+	- REPEATABLE READ : 트랜잭션이 시작된 이후 변경은 무시됨
+	- SERIALIZABLE : 한 번에 하나의 트랜잭션만 독립적으로 수행
