@@ -96,3 +96,31 @@
 	- READ COMMITED : 커밋된 데이터만 읽기 가능
 	- REPEATABLE READ : 트랜잭션이 시작된 이후 변경은 무시됨
 	- SERIALIZABLE : 한 번에 하나의 트랜잭션만 독립적으로 수행
+	
+## 5. AOP의 개념과 용어
+- **AOP**
+	- Aspect Oriented Programming : 관점 지향 프로그래밍
+	- 부가기능=advice(코드!!)을 **동적**으로 추가해주는 기술
+	- 동적으로 추가?? 우리가 프로그램을 만들 때 추가해주는 것이 아니라 코드가 실행되면서 자동으로 추가되게 하는 것
+	- **메서드의 시작 또는 끝에 자동으로 코드(advice)를 추가한다.**
+
+- **AOP 관련 용어**
+
+|용어|설명|
+|---|---|
+|target|advice가 추가될 객체|
+|advice|target에 동적으로 추가될 부가 기능(코드)|
+|join point|advice가 추가(join)될 대상(메서드)|
+|pointcut|join point들을 정의한 패턴|
+|proxy|target에 advice가 동적으로 추가되어 생성된 객체|
+|weaving|target에 advice를 추가해서 proxy를 생성하는 것|
+
+- **Advice의 종류**
+
+|종류|애너테이션|설명|
+| --- | --- | --- |
+|around advice|@Around|메서드의 시작과 끝 부분에 추가되는 부가 기능|
+|before advice|@Before|메서드의 시작 부분에 추가되는 부가 기능|
+|after advice|@After|메서드의 끝 부분에 추가되는 부가 기능|
+|after returning|@AfterReturning|예외가 발생하지 않았을 때 실행되는 부가 기능(즉, try문에 들어가는 부가 기능)|
+|after throwing|@AfterThrowing|예외가 발생했을 때 실행되는 부가 기능 (즉, catch문에 들어가는 부가 기능)|
