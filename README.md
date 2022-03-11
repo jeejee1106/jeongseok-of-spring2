@@ -97,6 +97,29 @@
 	- REPEATABLE READ : 트랜잭션이 시작된 이후 변경은 무시됨
 	- SERIALIZABLE : 한 번에 하나의 트랜잭션만 독립적으로 수행
 	
+- **@Transaction 어노테이션의 속성**
+
+|속성|설명|
+|---|---|
+|propagation|트랜잭션의 경계(boundary)를 설정하는 방법을 지정|
+|isolation|트랜잭션의 isolation level을 지정. |
+|readOnly|트랜잭션이 데이터를 읽기만 하는 경우, true로 지정하면 성능이 향상|
+|rollbackFor|지정된 예외가 발생하면 트랜잭션을 rollback, RuntimeException과 Error는 자동 rollback|
+|noRollbackFor|지정된 예외가 발생해도 트랜잭션을 rollback하지 않음|
+|timeout|지정된 시간(초) 내에 트랜잭션이 종료되지 않으면, 트랜잭션을 강제 종료|
+
+-  **propagation속성의 값**
+
+|속성|설명|
+|---|---|
+|**REQUIRED**|트랜잭션이 진행중이면 참여하고, 없으면 새로운 트랜잭션 시작(디폴트)|
+|**REQUIRES_NEW**|트랜잭션이 진행중이던 아니던 새로 트랜잭션 시작|
+|NESTED|트랜잭션이 진행중이면 트랜잭션의 내부 트랜잭션으로 실행|
+|MANDATORY|반드시 진행중인 트랜잭션 내에서만 실행 가능. 아니면 예외 발생|
+|SUPPORTS|트랜잭션이 진행중이건 아니건 상관없이 실행|
+|NOT_SUPPORTED|트랜잭션없이 처리. 트랜잭션이 진행중이면 잠시 중단(suspend)|
+|NEVER|트랜잭션 없이 처리. 트랜잭션이 진행중이면 예외 발생|
+	
 ## 5. AOP의 개념과 용어
 - **AOP**
 	- Aspect Oriented Programming : 관점 지향 프로그래밍
